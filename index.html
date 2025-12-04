@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Quazi Nafee Nusair</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. LOADER SECTION -->
+  <div class="loader">
+    <div class="computer">
+      <div class="screen" id="screen">
+        <div class="code-rail" id="code-rail"></div>
+        <div class="cursor" id="cursor"></div>
+      </div>
+      <div class="base"></div>
+    </div>
+    <h2 class="title">Initializing...</h2>
+    <p class="subtitle">Loading environment</p>
+  </div>
+
+  <!-- 2. NAVIGATION (Fixed Top) -->
+  <header class="app-header">
+    <h1 class="app-title">Portfolio<span>.</span></h1>
+    <nav style="display: flex; gap: 30px; font-weight: 500;">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#portfolio" class="nav-link">Portfolio</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- 3. HOME SECTION (View 1) -->
+  <section id="home" class="active-section">
+    <div class="container">
+      <div class="main-flex">
+        <div class="main-left">
+          <h1 class="main-name">Quazi Nafee Nusair</h1>
+          <div class="main-roles">
+            <span id="typed-roles"></span>
+            <span class="typed-cursor">|</span>
+          </div>
+          <p class="main-desc">
+            Aspiring AI Engineer and CSE student focused on bridging theoretical algorithms with practical applications in generative AI. I am eager to contribute to innovative projects that push the boundaries of automation and software efficiency.
+          </p>
+          <div class="main-links">
+            <a href="cv.pdf" class="cv-link" target="_blank" download>
+              Download CV
+            </a>
+            <!-- Social Icons -->
+            <a href="https://github.com/nafeenusair" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.525.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.338 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.137 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg></a>
+            <a href="https://www.linkedin.com/in/nafeenusair/" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.268h-3v-4.5c0-1.104-.896-2-2-2s-2 .896-2 2v4.5h-3v-9h3v1.25c.414-.586 1.104-1.25 2-1.25 1.657 0 3 1.343 3 3v6.75z"/></svg></a>
+            <a href="https://www.facebook.com/nusair.nafee" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.326v21.348c0 .733.592 1.326 1.325 1.326h11.495v-9.294h-3.124v-3.622h3.124v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.733 0 1.325-.593 1.325-1.326v-21.349c0-.733-.592-1.326-1.325-1.326z"/></svg></a>
+          </div>
+        </div>
+        <div class="main-right">
+          <img src="image/me.png" alt="Quazi Nafee Nusair" class="avatar-large">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ABOUT SECTION (View 2) -->
+  <section id="about">
+    <div class="about-tabs-section">
+      <div class="about-tabs-container">
+        <!-- Sidebar Tabs -->
+        <div class="about-tabs-nav">
+          <button class="about-tab-btn active" data-tab="about-me">About Me</button>
+          <button class="about-tab-btn" data-tab="skills">Skills</button> <!-- NEW BUTTON -->
+          <button class="about-tab-btn" data-tab="education">Education</button>
+          <button class="about-tab-btn" data-tab="research-interest">Research Interest</button>
+          <button class="about-tab-btn" data-tab="achievement">Achievement</button>
+          <button class="about-tab-btn" data-tab="side-quest">Side Quest</button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="about-tabs-content">
+          
+          <!-- Tab 1: About Me -->
+          <div class="about-tab-panel" id="about-me" style="display:block;">
+            <h2>About Me</h2>
+            <p>I am a Computer Science student entering my third year. With a strong foundation in algorithms and CS theory now complete, I am shifting my focus from the classroom to the code editor.</p>
+            <p>My current priority is project-based learning, specifically in the realm of AI and ML Engineering. I am currently building AI agents and chatbots by leveraging pre-trained models (OpenAI API). My goal is to master the application layer of AI today, so I can progress toward training and fine-tuning my own custom models in the future.</p>
+          </div>
+
+          <!-- Tab 2: Skills (NEW) -->
+          <div class="about-tab-panel" id="skills">
+            <h2>Skills</h2>
+            <!-- Removed tag lists per request -->
+
+            <!-- Skill Progress Bars -->
+            <h3 class="skills-progress-title">Language</h3>
+            <div class="skills-bars">
+              <!-- C++ -->
+              <div class="skill-row" data-percent="80">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- C++ SVG logo -->
+                    <svg width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="128" height="128" rx="16" fill="#00599C"/>
+                      <path d="M64 30c-18.78 0-34 15.22-34 34s15.22 34 34 34c12.62 0 24.02-7.13 29.61-18.53l-12.88-6.18C77.05 80.1 70.9 84 64 84c-11.05 0-20-8.95-20-20s8.95-20 20-20c6.9 0 13.05 3.9 16.73 10.71l12.88-6.18C88.02 37.13 76.62 30 64 30z" fill="#fff"/>
+                      <text x="82" y="75" font-family="Poppins, Arial" font-size="36" font-weight="700" fill="#fff">C++</text>
+                    </svg>
+                  </span>
+                  <span class="skill-name">C++</span>
+                  <span class="skill-value">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:80%"></div>
+                </div>
+              </div>
+
+              <!-- Python -->
+              <div class="skill-row" data-percent="90">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- Python SVG logo -->
+                    <svg width="28" height="28" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                      <linearGradient id="pyA" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#387EB8"/>
+                        <stop offset="100%" stop-color="#366994"/>
+                      </linearGradient>
+                      <linearGradient id="pyB" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#FFE052"/>
+                        <stop offset="100%" stop-color="#FFC331"/>
+                      </linearGradient>
+                      <path fill="url(#pyA)" d="M63 16c23 0 21 10 21 10v11H63v9h31s18-2 18-22-16-28-34-28H50s-26 0-26 22 18 20 18 20h10V36s-1-20 11-20z"/>
+                      <path fill="url(#pyB)" d="M65 112c-23 0-21-10-21-10V91h21v-9H34s-18 2-18 22 16 28 34 28h28s26 0 26-22-18-20-18-20h-10v10s1 20-11 20z"/>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Python</span>
+                  <span class="skill-value">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:90%"></div>
+                </div>
+              </div>
+
+              <!-- C -->
+              <div class="skill-row" data-percent="70">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- C language SVG logo -->
+                    <svg width="28" height="28" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="128" height="128" rx="16" fill="#283593"/>
+                      <text x="44" y="86" font-family="Poppins, Arial" font-size="72" font-weight="800" fill="#fff">C</text>
+                    </svg>
+                  </span>
+                  <span class="skill-name">C</span>
+                  <span class="skill-value">70%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:70%"></div>
+                </div>
+              </div>
+
+              <!-- Java -->
+              <div class="skill-row" data-percent="80">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- Simple mug (Java-like) icon -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 8h9v7a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8h2z" stroke="#00f0df" stroke-width="2"/>
+                      <path d="M16 9h2a3 3 0 0 1 0 6h-2" stroke="#00f0df" stroke-width="2"/>
+                      <path d="M10 4c0 1 2 1 2 2s-2 1-2 2" stroke="#00f0df" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Java</span>
+                  <span class="skill-value">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tab 3: Research Interest -->
+          <div class="about-tab-panel" id="research-interest">
+            <h2>Research Interest</h2>
+            <p>To be Announced</p>
+          </div>
+          
+          <!-- Tab 4: Achievement -->
+          <div class="about-tab-panel" id="achievement">
+            <h2>Achievement</h2>
+            <p>To be Announced</p>
+          </div>
+          
+          <!-- Tab 5: Education -->
+          <div class="about-tab-panel" id="education">
+            <h2>Education</h2>
+            <div class="education-timeline">
+              
+              <!-- Item 1: UIU -->
+              <div class="edu-item">
+                <div class="edu-marker">
+                   <div class="edu-circle">
+                      <img src="image/university.png" alt="University" class="edu-img">
+                   </div>
+                   <!-- Tunnel path -->
+                   <div class="edu-path-tunnel"></div>
+                </div>
+                <div class="edu-content">
+                   <h3 class="edu-institute">United International University</h3>
+                   <ul class="edu-details">
+                      <li>BSc in Computer Science and Engineering</li>
+                      <li>Year: 2024-Present</li>
+                      <li>Cgpa: 3.65/4.00</li>
+                   </ul>
+                </div>
+              </div>
+
+              <!-- Item 2: Adamjee College -->
+              <div class="edu-item">
+                <div class="edu-marker">
+                   <div class="edu-circle">
+                      <img src="image/college.png" alt="College" class="edu-img">
+                   </div>
+                   <div class="edu-path-tunnel"></div>
+                </div>
+                <div class="edu-content">
+                   <h3 class="edu-institute">Adamjee Cantonment College</h3>
+                   <ul class="edu-details">
+                      <li>Higher Secondary Certificate(Science)</li>
+                      <li>Year: 2020-2022</li>
+                      <li>Cgpa: 5.00/5.00</li>
+                   </ul>
+                </div>
+              </div>
+
+              <!-- Item 3: Adamjee School -->
+              <div class="edu-item">
+                <div class="edu-marker">
+                   <div class="edu-circle">
+                      <img src="image/school.png" alt="School" class="edu-img">
+                   </div>
+                   <!-- No tunnel for last item -->
+                </div>
+                <div class="edu-content">
+                   <h3 class="edu-institute">Adamjee Cantonment Public School</h3>
+                   <ul class="edu-details">
+                      <li>Secondary School Certificate</li>
+                      <li>Year: 2011-2020</li>
+                      <li>Cgpa: 5.00/5.00</li>
+                   </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <!-- Tab 6: Side Quest -->
+          <div class="about-tab-panel" id="side-quest">
+            <h2>Side Quest</h2>
+            <p>Gaming, exploring the OpenAI API, and experimenting with Python automation scripts.</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PORTFOLIO SECTION (Stub) -->
+  <section id="portfolio">
+    <div class="container" style="padding: 40px;">
+      <h2 class="stub-title">To be announced</h2>
+      <p class="stub-subtitle">Let him cook</p>
+    </div>
+  </section>
+
+  <!-- 6. EXPERIENCE SECTION (Stub) -->
+  <section id="experience">
+    <div class="container" style="padding: 40px;">
+      <h2 class="stub-title">To be announced</h2>
+      <p class="stub-subtitle">Let him cook</p>
+    </div>
+  </section>
+
+  <!-- 7. CONTACT SECTION (Optional Stub) -->
+  <section id="contact">
+    <div class="container" style="padding: 40px;">
+      <h2 class="stub-title">To be announced</h2>
+      <p class="stub-subtitle">Let him cook</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

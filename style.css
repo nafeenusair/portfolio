@@ -1,0 +1,492 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+  --bg: #000000;
+  --panel: #001419;
+  --cyan: #00f0df;
+  --muted-cyan: #00b3a9;
+  --glass: rgba(255, 255, 255, 0.03);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--panel) 0%, #001212 100%);
+  color: var(--cyan);
+  font-family: 'Poppins', sans-serif;
+  /* PREVENT MAIN SCROLLING (App Mode) */
+  overflow: hidden; 
+}
+
+/* =========================================
+   2. VIEW MANAGEMENT (App Mode)
+   ========================================= */
+section {
+  position: absolute; /* Stacks sections on top of each other */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  padding-top: 80px; /* Space for fixed Header */
+  
+  /* Initially Hidden */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Allow INTERNAL scrolling if content is too long */
+  overflow-y: auto; 
+  overflow-x: hidden;
+  
+  /* Transition */
+  transition: opacity 0.5s ease, visibility 0.5s, transform 0.5s ease;
+  transform: scale(0.98);
+}
+
+section.active-section {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 5; /* Brings active section to front */
+  transform: scale(1);
+}
+
+/* =========================================
+   3. LOADER ANIMATION
+   ========================================= */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+body.loaded .loader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.computer {
+  width: min(360px, 70vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(180deg, var(--panel), #000a0a);
+  border: 2px solid rgba(0, 255, 240, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  padding: 18px 14px;
+}
+
+.base {
+  width: 70%;
+  height: 12px;
+  background: linear-gradient(90deg, rgba(0, 255, 240, 0.06), transparent);
+  margin: 12px auto 0;
+  border-radius: 6px;
+}
+
+.title { margin: 0; color: var(--cyan); font-weight: 700; }
+.subtitle { margin: 0; color: var(--muted-cyan); font-size: 0.95rem; }
+
+.code-rail {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.code-line {
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  color: var(--cyan);
+  opacity: 0;
+  white-space: nowrap;
+  animation: slideIn 600ms ease forwards;
+}
+
+.cursor {
+  position: absolute; right: 18px; bottom: 14px;
+  width: 6px; height: 18px; background: var(--cyan);
+  border-radius: 2px; opacity: 0.9;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blink { 50% { opacity: 0; } 100% { opacity: 0.9; } }
+
+/* =========================================
+   4. HEADER & NAVIGATION
+   ========================================= */
+.app-header {
+  position: fixed; /* Always on top */
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.app-title { margin: 0; font-size: 28px; font-weight: 700; color: #fff; }
+.app-title span { color: var(--cyan); }
+
+.nav-link {
+  text-decoration: none; color: #fff; transition: color 0.3s;
+}
+.nav-link:hover { color: var(--cyan); }
+.nav-link.active { color: var(--cyan); }
+
+/* =========================================
+   5. HOME SECTION (Specifics)
+   ========================================= */
+#home {
+  /* This ensures the content is centered vertically in App Mode */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#home .container {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  /* Height is auto here because the parent section handles the height */
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-left { flex: 1; display: flex; flex-direction: column; justify-content: center; z-index: 2; min-width: 0; }
+.main-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; }
+
+.main-name {
+  margin: 0 0 16px 0; font-size: 4rem; font-weight: 700; color: #fff;
+  line-height: 1.1; letter-spacing: -0.02em; white-space: nowrap;
+}
+
+.main-roles {
+  font-size: 1.5rem; color: var(--cyan); font-weight: 600;
+  margin-bottom: 24px; display: flex; align-items: center; gap: 10px; white-space: nowrap;
+}
+
+.main-desc {
+  margin: 0 0 32px 0; color: #a0aec0; max-width: 500px;
+  line-height: 1.6; font-size: 1rem;
+}
+
+.cv-link {
+  min-width: 140px; height: 50px; padding: 0 32px;
+  border-radius: 30px; font-size: 1rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cyan); color: #000; border: none;
+  box-shadow: 0 0 20px rgba(0, 240, 223, 0.4);
+  cursor: pointer; transition: all 0.3s ease;
+}
+.cv-link:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 240, 223, 0.6); }
+
+.main-links { display: flex; align-items: center; gap: 16px; }
+
+.icon-link {
+  width: 45px; height: 45px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; transition: all 0.3s ease;
+}
+.icon-link:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+.avatar-large {
+  width: 450px; height: 450px; border-radius: 50%;
+  object-fit: cover; border: 3px solid var(--cyan);
+  box-shadow: 0 0 60px rgba(0, 240, 223, 0.15);
+}
+
+/* =========================================
+   6. ABOUT SECTION (Tabs - Wide Layout)
+   ========================================= */
+#about {
+  /* Align to top for scrolling internal content, centered horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-tabs-section {
+  width: 100%;
+  padding: 80px 0;
+  display: flex; justify-content: center;
+}
+
+.about-tabs-container {
+  max-width: 1250px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.about-tabs-nav { display: flex; flex-direction: column; gap: 16px; }
+
+.about-tab-btn {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.05);
+  color: #d1d5db; font-size: 1.1rem; font-weight: 600;
+  padding: 20px 24px; text-align: left; border-radius: 12px;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.about-tab-btn:hover { background: rgba(255,255,255,0.03); color: #fff; transform: translateX(5px); }
+.about-tab-btn.active {
+  color: var(--cyan); background: rgba(0, 240, 223, 0.05);
+  border-color: rgba(0, 240, 223, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 223, 0.05);
+}
+
+.about-tabs-content {
+  background: var(--panel); padding: 40px; border-radius: 20px;
+  border: 1px solid rgba(0,255,240,0.08); min-height: 400px;
+}
+
+.about-tab-panel { display: none; animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.about-tab-panel h2 {
+  font-size: 2.5rem; font-weight: 700; color: var(--cyan); margin: 0 0 24px 0;
+  border-bottom: 1px solid rgba(0, 240, 223, 0.1); padding-bottom: 16px;
+}
+.about-tab-panel p { 
+  font-size: 1.15rem; 
+  color: #a0aec0; 
+  line-height: 1.8; 
+  margin-bottom: 16px; 
+}
+
+/* =========================================
+   6.1 SKILL PROGRESS BARS
+   ========================================= */
+.skills-progress-title {
+  margin: 24px 0 12px 0;
+  color: var(--cyan);
+}
+
+.skills-bars { display: flex; flex-direction: column; gap: 16px; }
+
+.skill-row {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,255,240,0.08);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.skill-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.skill-logo { display: inline-flex; align-items: center; justify-content: center; }
+.skill-name { font-weight: 700; color: #fff; flex: 1; margin-left: 8px; }
+.skill-value { color: var(--muted-cyan); font-weight: 600; }
+
+.skill-bar {
+  width: 100%;
+  height: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+  border: 1px solid rgba(0,255,240,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  --target: 0%;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), #17fff0);
+  box-shadow: 0 0 12px rgba(0, 240, 223, 0.4);
+  border-radius: 999px;
+  transition: width 1.2s ease-in-out;
+}
+
+/* =========================================
+   7. EDUCATION TIMELINE ("TUNNEL" STYLE)
+   ========================================= */
+.education-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-item {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* LEFT SIDE: Marker Column */
+.edu-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 65px;
+}
+
+.edu-circle {
+  width: 65px; height: 65px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+  border-radius: 50%;
+  border: 3px solid var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 223, 0.2);
+  overflow: hidden;
+  z-index: 2; 
+  padding: 5px; 
+}
+
+.edu-img {
+  width: 100%; 
+  height: 100%;
+  object-fit: contain; 
+}
+
+/* THE TUNNEL PATH */
+.edu-path-tunnel {
+  width: 12px; 
+  flex-grow: 1; 
+  background: transparent;
+  border-left: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  margin: -2px auto 0 auto; 
+  z-index: 1; 
+  box-shadow: inset 0 0 8px rgba(0, 240, 223, 0.1); 
+  min-height: 40px; 
+}
+
+/* Hide tunnel for the last item */
+.edu-item:last-child .edu-path-tunnel {
+  display: none;
+}
+
+/* RIGHT SIDE: Text Content */
+.edu-content {
+  flex: 1;
+  padding-top: 10px; 
+  padding-bottom: 50px; 
+}
+
+.edu-item:last-child .edu-content {
+  padding-bottom: 0;
+}
+
+.edu-institute {
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.edu-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edu-details li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  color: #d1d5db;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.edu-details li::before {
+  content: "•";
+  color: var(--cyan);
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1rem;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+/* =========================================
+   8. RESPONSIVE
+   ========================================= */
+/* Simple stub styles */
+.stub-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cyan);
+  margin: 0 0 8px 0;
+}
+.stub-subtitle {
+  color: #a0aec0;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 1200px) {
+  .main-name { font-size: 3.2rem; }
+  .avatar-large { width: 380px; height: 380px; }
+}
+
+@media (max-width: 900px) {
+  .app-header { position: absolute; top: 0; left: 0; right: 0; padding: 20px; }
+  
+  .container, .about-tabs-container { padding: 0 24px; display: block; height: auto; }
+  
+  /* Home Mobile */
+  .main-flex { flex-direction: column-reverse; gap: 40px; text-align: center; }
+  .main-left { align-items: center; }
+  .avatar-large { width: 280px; height: 280px; }
+  .main-name { font-size: 2.5rem; white-space: normal; }
+  
+  /* About Mobile */
+  .about-tabs-container { grid-template-columns: 1fr; gap: 32px; }
+  .about-tabs-nav { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
+  .about-tab-btn { min-width: 140px; text-align: center; padding: 14px; }
+  
+  /* Education Mobile */
+  .edu-item { flex-direction: column; gap: 15px; }
+  .edu-marker { flex-direction: row; width: 100%; justify-content: flex-start; align-items: center; gap: 15px; }
+  .edu-path-tunnel { display: none; } /* Hide tunnel on mobile */
+  .edu-content { padding-top: 0; padding-bottom: 40px; padding-left: 10px; border-left: 2px dashed rgba(0, 240, 223, 0.3); margin-left: 32px; }
+  .edu-item:last-child .edu-content { border-left: none; }
+}
