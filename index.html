@@ -82,7 +82,7 @@
           <button class="about-tab-btn" data-tab="education">Education</button>
           <button class="about-tab-btn" data-tab="research-interest">Research Interest</button>
           <button class="about-tab-btn" data-tab="achievement">Achievement</button>
-          <button class="about-tab-btn" data-tab="side-quest">Side Quest</button>
+          <button class="about-tab-btn" data-tab="others">Others</button>
         </div>
         
         <!-- Tab Content -->
@@ -99,9 +99,7 @@
           <div class="about-tab-panel" id="skills">
             <h2>Skills</h2>
             <!-- Removed tag lists per request -->
-
-            <!-- Skill Progress Bars -->
-            <h3 class="skills-progress-title">Language</h3>
+            <h3 class="skills-progress-title section-cyan">Programming Skills</h3>
             <div class="skills-bars">
               <!-- C++ -->
               <div class="skill-row" data-percent="80">
@@ -185,6 +183,7 @@
                 </div>
               </div>
             </div>
+            
           </div>
           
           <!-- Tab 3: Research Interest -->
@@ -263,9 +262,69 @@
           </div>
           
           <!-- Tab 6: Side Quest -->
-          <div class="about-tab-panel" id="side-quest">
-            <h2>Side Quest</h2>
-            <p>Gaming, exploring the OpenAI API, and experimenting with Python automation scripts.</p>
+          <div class="about-tab-panel" id="others">
+            <h2>Others</h2>
+
+            <!-- Hobby (cyan section) moved here) -->
+            <h3 class="section-cyan">Hobby</h3>
+            <div class="hobby-item">
+              <div class="hobby-item-title">
+                <span class="hobby-icon" aria-hidden="true">
+                  <!-- Console controller icon -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9h12a3 3 0 0 1 3 3v2.5a3.5 3.5 0 1 1-7 0V14H10v.5a3.5 3.5 0 1 1-7 0V12a3 3 0 0 1 3-3z" stroke="#00f0df" stroke-width="1.8"/>
+                    <path d="M8.5 12.5h-2M7.5 11.5v2" stroke="#00f0df" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="16.5" cy="12.5" r="0.9" fill="#00f0df"/>
+                    <circle cx="18.7" cy="14.3" r="0.9" fill="#00f0df"/>
+                  </svg>
+                </span>
+                <span class="hobby-name">Gaming</span>
+              </div>
+              <ul class="hobby-list">
+                <li>62 games completed</li>
+                <li>Valorant - Diamond 2 [peak]</li>
+              </ul>
+            </div>
+
+            <!-- Language Proficiency (moved here with bars) -->
+            <h3 class="skills-progress-title section-cyan">Language Proficiency</h3>
+            <div class="skills-bars">
+              <!-- Bangla -->
+              <div class="skill-row" data-percent="100">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- BN badge -->
+                    <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="#00f0df" stroke-width="2"/>
+                      <text x="8" y="21" font-family="Poppins, Arial" font-size="12" font-weight="800" fill="#00f0df">BN</text>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Bangla</span>
+                  <span class="skill-value">100%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:100%"></div>
+                </div>
+              </div>
+
+              <!-- English -->
+              <div class="skill-row" data-percent="90">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true">
+                    <!-- EN badge -->
+                    <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="#00f0df" stroke-width="2"/>
+                      <text x="7" y="21" font-family="Poppins, Arial" font-size="12" font-weight="800" fill="#00f0df">EN</text>
+                    </svg>
+                  </span>
+                  <span class="skill-name">English</span>
+                  <span class="skill-value">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:90%"></div>
+                </div>
+              </div>
+            </div>
           </div>
           
         </div>

@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
      ---------------------------------------------------- */
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
+    const sectionOrder = ['home', 'about', 'portfolio', 'experience', 'contact'];
+    let isPaging = false;
+    const PAGE_DELAY = 700; // ms between page switches
 
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -93,6 +96,40 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set initial active state on Home
   const homeLink = document.querySelector('.nav-link[href="#home"]');
   if (homeLink) homeLink.classList.add('active');
+
+  // Fullpage scroll: switch between sections on mouse wheel
+  function getCurrentIndex() {
+    const active = document.querySelector('section.active-section');
+    const id = active ? active.id : 'home';
+    const idx = sectionOrder.indexOf(id);
+    return idx >= 0 ? idx : 0;
+  }
+
+  function activateIndex(idx) {
+    const clamped = Math.max(0, Math.min(sectionOrder.length - 1, idx));
+    const targetId = sectionOrder[clamped];
+    const targetSection = document.getElementById(targetId);
+    if (!targetSection) return;
+    sections.forEach(sec => sec.classList.remove('active-section'));
+    targetSection.classList.add('active-section');
+    // nav highlight
+    navLinks.forEach(n => n.classList.remove('active'));
+    const targetLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
+    if (targetLink) targetLink.classList.add('active');
+  }
+
+  window.addEventListener('wheel', (e) => {
+    // Intercept wheel to paginate between sections smoothly
+    if (isPaging) return;
+    const dy = e.deltaY || 0;
+    if (Math.abs(dy) < 5) return; // ignore tiny scrolls
+    e.preventDefault();
+    isPaging = true;
+    const cur = getCurrentIndex();
+    const next = dy > 0 ? cur + 1 : cur - 1;
+    activateIndex(next);
+    setTimeout(() => { isPaging = false; }, PAGE_DELAY);
+  }, { passive: false });
 
 
   /* ----------------------------------------------------
@@ -139,15 +176,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = btn.getAttribute('data-tab');
       document.getElementById(target).style.display = 'block';
 
-      // If skills tab is shown, animate progress bars
-      if (target === 'skills') {
+      // If the tab with progress bars is shown, animate them
+      if (target === 'others' || target === 'skills') {
         animateSkillBars();
       }
     });
   });
 
-  // Trigger animation if Skills is initially visible via hash navigation
-  if (document.querySelector('#skills').style.display === 'block') {
+  // Trigger animation if Others (or Skills) is initially visible via hash navigation
+  if (document.querySelector('#others').style.display === 'block' ||
+      document.querySelector('#skills').style.display === 'block') {
     animateSkillBars();
   }
 
