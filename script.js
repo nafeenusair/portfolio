@@ -69,9 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
      ---------------------------------------------------- */
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
-    const sectionOrder = ['home', 'about', 'portfolio', 'experience', 'contact'];
-    let isPaging = false;
-    const PAGE_DELAY = 700; // ms between page switches
 
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -97,39 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeLink = document.querySelector('.nav-link[href="#home"]');
   if (homeLink) homeLink.classList.add('active');
 
-  // Fullpage scroll: switch between sections on mouse wheel
-  function getCurrentIndex() {
-    const active = document.querySelector('section.active-section');
-    const id = active ? active.id : 'home';
-    const idx = sectionOrder.indexOf(id);
-    return idx >= 0 ? idx : 0;
-  }
-
-  function activateIndex(idx) {
-    const clamped = Math.max(0, Math.min(sectionOrder.length - 1, idx));
-    const targetId = sectionOrder[clamped];
-    const targetSection = document.getElementById(targetId);
-    if (!targetSection) return;
-    sections.forEach(sec => sec.classList.remove('active-section'));
-    targetSection.classList.add('active-section');
-    // nav highlight
-    navLinks.forEach(n => n.classList.remove('active'));
-    const targetLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
-    if (targetLink) targetLink.classList.add('active');
-  }
-
-  window.addEventListener('wheel', (e) => {
-    // Intercept wheel to paginate between sections smoothly
-    if (isPaging) return;
-    const dy = e.deltaY || 0;
-    if (Math.abs(dy) < 5) return; // ignore tiny scrolls
-    e.preventDefault();
-    isPaging = true;
-    const cur = getCurrentIndex();
-    const next = dy > 0 ? cur + 1 : cur - 1;
-    activateIndex(next);
-    setTimeout(() => { isPaging = false; }, PAGE_DELAY);
-  }, { passive: false });
+  // Removed wheel-driven pagination per request; navigation works via clicks only.
 
 
   /* ----------------------------------------------------
@@ -190,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function animateSkillBars() {
-    const rows = document.querySelectorAll('.skill-row');
-    rows.forEach(row => {
+    const skillRows = document.querySelectorAll('.skill-row');
+    skillRows.forEach(row => {
       const percent = row.getAttribute('data-percent');
       const fill = row.querySelector('.skill-fill');
       if (fill) {
@@ -199,6 +164,64 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => {
           fill.style.width = percent + '%';
         });
+      }
+    });
+
+  }
+
+  /* ----------------------------------------------------
+     5. CONTACT FORM CUSTOM VALIDATION
+     ---------------------------------------------------- */
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    const fields = contactForm.querySelectorAll('input[required], textarea[required]');
+
+    // Preserve original placeholders
+    fields.forEach(f => {
+      if (!f.dataset.origPlaceholder) {
+        f.dataset.origPlaceholder = f.placeholder || '';
+      }
+    });
+
+    // Clear error on focus/input
+    fields.forEach(f => {
+      const clearError = () => {
+        f.classList.remove('field-error');
+        f.placeholder = f.dataset.origPlaceholder;
+        f.setCustomValidity('');
+      };
+      f.addEventListener('focus', clearError);
+      f.addEventListener('input', clearError);
+    });
+
+    contactForm.addEventListener('submit', (e) => {
+      let hasError = false;
+      fields.forEach(f => {
+        const value = f.value.trim();
+        if (!value) {
+          hasError = true;
+          f.classList.add('field-error');
+          f.placeholder = 'Please fill out this field';
+          // prevent native tooltip
+          f.setCustomValidity(' ');
+        } else if (f.type === 'email') {
+          // Simple email pattern check
+          const ok = /.+@.+\..+/.test(value);
+          if (!ok) {
+            hasError = true;
+            f.classList.add('field-error');
+            f.placeholder = 'Enter a valid email';
+            f.value = '';
+            f.setCustomValidity(' ');
+          }
+        }
+      });
+
+      if (hasError) {
+        e.preventDefault();
+        // Focus first error field
+        const firstErr = contactForm.querySelector('.field-error');
+        if (firstErr) firstErr.focus();
       }
     });
   }
