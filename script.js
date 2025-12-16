@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		 ---------------------------------------------------- */
 	const navLinks = document.querySelectorAll('.nav-link');
 	const sections = document.querySelectorAll('section');
+	const hamburger = document.querySelector('.hamburger');
+	const mobileMenu = document.querySelector('.mobile-menu');
+	const menuBackdrop = document.querySelector('.menu-backdrop');
 
 	navLinks.forEach(link => {
 		link.addEventListener('click', (e) => {
@@ -95,6 +98,34 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (homeLink) homeLink.classList.add('active');
 
 	// Removed wheel-driven pagination per request; navigation works via clicks only.
+
+	/* Mobile menu open/close */
+	function closeMenu() {
+		document.body.classList.remove('menu-open');
+		if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+		if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+	}
+	if (hamburger && mobileMenu) {
+		hamburger.addEventListener('click', () => {
+			const open = !document.body.classList.contains('menu-open');
+			if (open) {
+				document.body.classList.add('menu-open');
+				hamburger.setAttribute('aria-expanded', 'true');
+				mobileMenu.setAttribute('aria-hidden', 'false');
+			} else {
+				closeMenu();
+			}
+		});
+		mobileMenu.querySelectorAll('a.nav-link').forEach(link => {
+			link.addEventListener('click', () => closeMenu());
+		});
+	}
+	if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
+
+
+	// Also close mobile menu when using desktop-nav links
+	document.querySelectorAll('.desktop-nav a.nav-link').forEach(l => l.addEventListener('click', () => closeMenu()));
 
 
 	/* ----------------------------------------------------
@@ -172,6 +203,27 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
+
+	/* ----------------------------------------------------
+		 5.1 MOBILE HEADER AUTO-HIDE ON SCROLL
+		 ---------------------------------------------------- */
+	let lastScrollTop = 0;
+	const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+
+	sections.forEach(sec => {
+		sec.addEventListener('scroll', () => {
+			if (!isMobile()) return;
+			const st = sec.scrollTop;
+			if (st > lastScrollTop + 10) {
+				// scrolling down
+				document.body.classList.add('header-hidden');
+			} else if (st < lastScrollTop - 10) {
+				// scrolling up
+				document.body.classList.remove('header-hidden');
+			}
+			lastScrollTop = st <= 0 ? 0 : st;
+		});
+	});
 
 	/* ----------------------------------------------------
 		 5. CONTACT FORM CUSTOM VALIDATION

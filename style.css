@@ -24,6 +24,35 @@ html, body {
 }
 
 /* =========================================
+   GLOBAL SCROLLBAR THEME (Cyan)
+   - Chrome/Edge/Safari via ::-webkit-*
+   - Firefox via scrollbar-color
+   ========================================= */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) rgba(0, 240, 223, 0.12);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 240, 223, 0.08);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--cyan);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* =========================================
    2. VIEW MANAGEMENT (App Mode)
    ========================================= */
 section {
@@ -149,6 +178,7 @@ body.loaded .loader {
   align-items: center;
   justify-content: space-between;
   z-index: 100;
+  transition: transform 0.3s ease;
 }
 
 .app-title { margin: 0; font-size: 28px; font-weight: 700; color: #fff; }
@@ -159,6 +189,18 @@ body.loaded .loader {
 }
 .nav-link:hover { color: var(--cyan); }
 .nav-link.active { color: var(--cyan); }
+
+/* Ensure backdrop is not part of desktop header layout */
+.menu-backdrop { display: none; }
+
+/* Mobile menu trigger (hidden by default) */
+.hamburger { display: none; background: transparent; border: 0; padding: 8px; cursor: pointer; }
+.hamburger span { display: block; width: 26px; height: 3px; background: #fff; margin: 5px 0; border-radius: 2px; transition: background 0.2s ease; }
+
+/* Mobile slide-in menu */
+.mobile-menu {
+  display: none;
+}
 
 /* =========================================
    5. HOME SECTION (Specifics)
@@ -390,6 +432,85 @@ body.loaded .loader {
   transition: width 1.4s ease;
 }
 
+/* ----------------------------------------------------
+   Skills Tab: logo-only grid (no percent/bars)
+   ---------------------------------------------------- */
+#skills .skills-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 120px));
+  gap: 16px;
+}
+
+#skills .skill-row {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#skills .skill-label {
+  justify-content: center;
+}
+
+#skills .skill-name,
+#skills .skill-value,
+#skills .skill-bar { display: none !important; }
+
+#skills .skill-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  position: relative;
+}
+
+#skills .skill-logo img {
+  width: 70%;
+  height: 70%;
+}
+
+/* Tooltip for skill logos (only in Skills tab) */
+#skills .skill-logo::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: var(--cyan);
+  font-size: 0.85rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#skills .skill-logo::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #000;
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#skills .skill-logo:hover::after,
+#skills .skill-logo:hover::before {
+  opacity: 1;
+}
+
+/* ----------------------------------------------------
+   Language Proficiency (Others): hide progress bars
+   ---------------------------------------------------- */
+#others .skill-bar {
+  display: none !important;
+}
+
 /* Contact container */
 .contact-wrap {
   max-width: 700px;
@@ -537,7 +658,8 @@ body.loaded .loader {
   opacity: 0.3;
 }
 
-.edu-item:last-child .edu-marker::before { display: none; }
+/* Keep dashed connector for the last item as well */
+/* (previously hidden) */
 
 /* The Small Glowing Dot */
 .edu-circle {
@@ -631,7 +753,45 @@ body.loaded .loader {
   .app-header { position: absolute; top: 0; left: 0; right: 0; padding: 20px; }
   .app-title { font-size: 22px; }
   .nav-link { font-size: 14px; }
-  .app-header nav { display: flex; flex-wrap: wrap; gap: 10px; }
+  .app-header .desktop-nav { display: none !important; }
+  .hamburger { display: inline-block; }
+  /* Dropdown mobile menu anchored to hamburger */
+  .app-header { position: fixed; }
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: min(80vw, 240px);
+    padding: 12px;
+    gap: 10px;
+    background: rgba(0,0,0,0.95);
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    transform-origin: top right;
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 250;
+  }
+  .mobile-menu a.nav-link { display: block; padding: 10px 8px; border-radius: 8px; }
+  .mobile-menu a.nav-link:hover { background: rgba(0,240,223,0.08); color: var(--cyan); }
+  body.menu-open .mobile-menu { opacity: 1; transform: scale(1); pointer-events: auto; }
+  body.menu-open .hamburger span { background: var(--cyan); }
+  /* Backdrop to close when clicking outside */
+  .menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(1px);
+    z-index: 200;
+    display: none;
+  }
+  body.menu-open .menu-backdrop { display: block; }
+  body.header-hidden .app-header { transform: translateY(-120%); }
   
   .container, .about-tabs-container { padding: 0 24px; display: block; height: auto; }
   
@@ -650,20 +810,31 @@ body.loaded .loader {
   /* Skills bars */
   .skills-bars .skill-row { gap: 10px; padding: 14px 16px; }
   .skill-bar { height: 8px; }
-  
-
-@media (max-width: 600px) {
-  .app-title { font-size: 20px; }
-  .app-header nav { gap: 8px; }
-  .nav-link { font-size: 13px; }
-  .avatar-large { width: 220px; height: 220px; }
-  .main-name { font-size: 2.2rem; }
-  .skills-progress-title { font-size: 1rem; }
+  /* Education Mobile: keep marker left with dashed under dot, content to the right */
+  .edu-item { flex-direction: row; align-items: flex-start; gap: 16px; padding-bottom: 32px; }
+  .edu-marker { min-width: 30px; align-items: flex-start; gap: 0; }
+  .edu-content { padding: 0; margin: 0; border: none; }
 }
-  /* Education Mobile */
-  .edu-item { flex-direction: column; gap: 15px; }
-  .edu-marker { flex-direction: row; width: 100%; justify-content: flex-start; align-items: center; gap: 15px; }
-  .edu-path-tunnel { display: none; } /* Hide tunnel on mobile */
-  .edu-content { padding-top: 0; padding-bottom: 40px; padding-left: 10px; border-left: 2px dashed rgba(0, 240, 223, 0.3); margin-left: 32px; }
-  .edu-item:last-child .edu-content { border-left: none; }
+
+/* Phone-only tweaks */
+@media (max-width: 600px) {
+  .app-title { font-size: 18px; }
+  .app-header nav { gap: 8px; }
+  .nav-link { font-size: 12px; }
+  .avatar-large { width: 220px; height: 220px; }
+  .main-name { font-size: 1.9rem; }
+  .main-roles { font-size: 1.05rem; }
+  .main-desc { font-size: 0.9rem; }
+  .cv-link { height: 42px; font-size: 0.9rem; padding: 0 22px; }
+  .skills-progress-title { font-size: 0.95rem; }
+  .about-tab-btn { font-size: 0.95rem; padding: 12px; }
+  .about-tab-panel h2 { font-size: 1.8rem; }
+  /* Skills grid: smaller tiles on phone */
+  #skills .skills-bars { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 12px; }
+  #skills .skill-row { padding: 12px; }
+  #skills .skill-logo { width: 56px; height: 56px; }
+  /* Education text sizing */
+  .edu-institute { font-size: 1.1rem; }
+  .edu-logo { height: 32px; }
+  .edu-details li { font-size: 0.95rem; }
 }

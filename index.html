@@ -28,13 +28,26 @@
 
   <header class="app-header">
     <h1 class="app-title">Portfolio<span>.</span></h1>
-    <nav style="display: flex; gap: 30px; font-weight: 500;">
+    <nav class="desktop-nav" style="display: flex; gap: 30px; font-weight: 500;">
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
+      <a href="#portfolio" class="nav-link">Projects</a>
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="menu-backdrop" aria-hidden="true"></div>
+    <div class="mobile-menu" aria-hidden="true" role="menu">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#portfolio" class="nav-link">Projects</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
   </header>
 
   <section id="home" class="active-section">
@@ -88,22 +101,10 @@
             <h2>Skills</h2>
             <h3 class="skills-progress-title section-cyan">Programming Skills</h3>
             <div class="skills-bars">
-              <div class="skill-row" data-percent="80">
-                <div class="skill-label">
-                  <span class="skill-logo" aria-hidden="true">
-                    <img src="image/code_logo/cpp.png" alt="C++ logo">
-                  </span>
-                  <span class="skill-name">C++</span>
-                  <span class="skill-value">80%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="--target:80%"></div>
-                </div>
-              </div>
-
+              <!-- Python -->
               <div class="skill-row" data-percent="90">
                 <div class="skill-label">
-                  <span class="skill-logo" aria-hidden="true">
+                  <span class="skill-logo" aria-hidden="true" data-tooltip="Python">
                     <img src="image/code_logo/python.png" alt="Python logo">
                   </span>
                   <span class="skill-name">Python</span>
@@ -114,22 +115,24 @@
                 </div>
               </div>
 
-              <div class="skill-row" data-percent="70">
+              <!-- C++ -->
+              <div class="skill-row" data-percent="80">
                 <div class="skill-label">
-                  <span class="skill-logo" aria-hidden="true">
-                    <img src="image/code_logo/c.png" alt="C logo">
+                  <span class="skill-logo" aria-hidden="true" data-tooltip="C++">
+                    <img src="image/code_logo/cpp.png" alt="C++ logo">
                   </span>
-                  <span class="skill-name">C</span>
-                  <span class="skill-value">70%</span>
+                  <span class="skill-name">C++</span>
+                  <span class="skill-value">80%</span>
                 </div>
                 <div class="skill-bar">
-                  <div class="skill-fill" style="--target:70%"></div>
+                  <div class="skill-fill" style="--target:80%"></div>
                 </div>
               </div>
 
+              <!-- Java -->
               <div class="skill-row" data-percent="80">
                 <div class="skill-label">
-                  <span class="skill-logo" aria-hidden="true">
+                  <span class="skill-logo" aria-hidden="true" data-tooltip="Java">
                     <img src="image/code_logo/java.png" alt="Java logo">
                   </span>
                   <span class="skill-name">Java</span>
@@ -139,13 +142,27 @@
                   <div class="skill-fill" style="--target:80%"></div>
                 </div>
               </div>
+
+              <!-- C -->
+              <div class="skill-row" data-percent="70">
+                <div class="skill-label">
+                  <span class="skill-logo" aria-hidden="true" data-tooltip="C">
+                    <img src="image/code_logo/c.png" alt="C logo">
+                  </span>
+                  <span class="skill-name">C</span>
+                  <span class="skill-value">70%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" style="--target:70%"></div>
+                </div>
+              </div>
             </div>
 
             <h3 class="skills-progress-title section-cyan">Tools and Framework</h3>
             <div class="skills-bars">
               <div class="skill-row" data-percent="75">
                 <div class="skill-label">
-                  <span class="skill-logo" aria-hidden="true">
+                  <span class="skill-logo" aria-hidden="true" data-tooltip="Git">
                     <img src="image/code_logo/github.png" alt="GitHub logo">
                   </span>
                   <span class="skill-name">GitHub</span>
@@ -181,7 +198,6 @@
                    <ul class="edu-details">
                       <li>BSc in Computer Science and Engineering</li>
                       <li>Year: 2024-Present</li>
-                      <li>Cgpa: 3.65/4.00</li>
                    </ul>
                 </div>
               </div>
@@ -198,7 +214,6 @@
                    <ul class="edu-details">
                       <li>Higher Secondary Certificate(Science)</li>
                       <li>Year: 2020-2022</li>
-                      <li>Cgpa: 5.00/5.00</li>
                    </ul>
                 </div>
               </div>
@@ -215,7 +230,6 @@
                    <ul class="edu-details">
                       <li>Secondary School Certificate</li>
                       <li>Year: 2011-2020</li>
-                      <li>Cgpa: 5.00/5.00</li>
                    </ul>
                 </div>
               </div>
@@ -240,7 +254,7 @@
                 <span class="hobby-name">Gaming</span>
               </div>
               <ul class="hobby-list">
-                <li>62 games completed</li>
+                <li>A great escape from reality</li>
               </ul>
             </div>
 
@@ -255,10 +269,7 @@
                     </svg>
                   </span>
                   <span class="skill-name">Bangla</span>
-                  <span class="skill-value">100%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="--target:100%"></div>
+                  <span class="skill-value">Native</span>
                 </div>
               </div>
 
@@ -271,10 +282,7 @@
                     </svg>
                   </span>
                   <span class="skill-name">English</span>
-                  <span class="skill-value">90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="--target:90%"></div>
+                  <span class="skill-value">High Proficiency</span>
                 </div>
               </div>
             </div>
