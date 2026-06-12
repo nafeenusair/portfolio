@@ -282,6 +282,107 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
-});
-  
 
+
+  /* ----------------------------------------------------
+     8. MODAL AND GALLERY LOGIC
+     ---------------------------------------------------- */
+  const galleryImages = [
+    "projects/ConnecU/1. Introductions.png",
+    "projects/ConnecU/1.1. Modules.png",
+    "projects/ConnecU/2. Skill_Exchange.png",
+    "projects/ConnecU/3. Forum.png",
+    "projects/ConnecU/4. Lost_Found(1).png",
+    "projects/ConnecU/5. Lost_Found(2).png",
+    "projects/ConnecU/6. Ride_Share.png",
+    "projects/ConnecU/7. Marketplace(1).png",
+    "projects/ConnecU/8. Marketplace(2).png",
+    "projects/ConnecU/9. Chatbox.png",
+    "projects/ConnecU/10. Match.png"
+  ];
+  let currentImageIndex = 0;
+  
+  window.openProjectModal = function(projectId) {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      currentImageIndex = 0;
+      updateGallery();
+    }
+  };
+
+  window.closeProjectModal = function() {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.changeGalleryImage = function(direction) {
+    currentImageIndex += direction;
+    if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+    if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+    updateGallery();
+  };
+
+  window.goToGalleryImage = function(index) {
+    currentImageIndex = index;
+    updateGallery();
+  };
+
+  window.updateGallery = function() {
+    const imgEl = document.getElementById('gallery-image');
+    if (imgEl) {
+      imgEl.style.opacity = 0;
+      setTimeout(function() {
+        imgEl.src = galleryImages[currentImageIndex];
+        imgEl.style.opacity = 1;
+      }, 150);
+    }
+    
+    const indicators = document.getElementById('gallery-indicators');
+    if (indicators) {
+      if (indicators.children.length === 0) {
+        galleryImages.forEach(function(_, idx) {
+          const dot = document.createElement('div');
+          dot.className = 'gallery-dot';
+          dot.onclick = function() { window.goToGalleryImage(idx); };
+          indicators.appendChild(dot);
+        });
+      }
+      
+      Array.from(indicators.children).forEach(function(dot, idx) {
+        if (idx === currentImageIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('project-modal');
+    if (modal && modal.classList.contains('active')) {
+      if (e.key === 'ArrowRight') {
+        window.changeGalleryImage(1);
+      } else if (e.key === 'ArrowLeft') {
+        window.changeGalleryImage(-1);
+      } else if (e.key === 'Escape') {
+        window.closeProjectModal();
+      }
+    }
+  });
+
+  const modalOverlay = document.getElementById('project-modal');
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) {
+        window.closeProjectModal();
+      }
+    });
+  }
+
+});

@@ -294,9 +294,41 @@
   </section>
 
   <section id="portfolio">
+
     <div class="container" style="padding: 40px;">
-      <h2 class="stub-title">To be announced</h2>
+
+      <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); margin: 0 0 24px 0; border-bottom: 1px solid rgba(0, 240, 223, 0.1); padding-bottom: 16px;">Projects</h2>
+
+      <div class="project-grid">
+
+        <div class="project-card" onclick="openProjectModal('connectu')" >
+
+          <div class="project-image">
+
+            <img src="projects/ConnecU/1. Introductions.png" alt="ConnectU">
+
+          </div>
+
+          <div class="project-content">
+
+            <h3 class="project-title">ConnectU</h3>
+
+            <p class="project-desc">The unified student community platform</p>
+
+            <a href="https://github.com/nafeenusair/CAMPUS.git" target="_blank" class="project-github" onclick="event.stopPropagation()" >
+
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.525.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.338 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.137 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
   </section>
 
   <section id="experience">
@@ -352,6 +384,130 @@
     </div>
   </section>
 
+    <div id="project-modal" class="modal-overlay">
+
+    <div class="modal-content">
+
+      <button class="modal-close" onclick="closeProjectModal()" >&times;</button>
+
+      <div class="modal-body">
+
+        <div class="modal-text">
+
+          <h2>ConnectU : The Unified University Ecosystem</h2>
+
+          <h3>The Core Problem</h3>
+
+          <p>University life is incredibly fast-paced, but the digital tools students use to manage it are completely fragmented. If you lose your student ID, you post in a massive, noisy Facebook group. If you need a ride home, you dig through chaotic WhatsApp chats. If you want to buy a used textbook, you scour physical notice boards.</p>
+
+          <p>This fragmentation causes three major issues:</p>
+
+          <ul style="color: #d1d5db; margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
+
+            <li><strong style="color: var(--cyan);">Inefficiency:</strong> Important posts get buried in social media feeds.</li>
+
+            <li><strong style="color: var(--cyan);">Lack of Privacy:</strong> Students are forced to share personal phone numbers to coordinate meetups.</li>
+
+            <li><strong style="color: var(--cyan);">Security Risks:</strong> Public groups lack verification, making it easy for scammers to infiltrate campus trading.</li>
+
+          </ul>
+
+          <h3>The Solution: What is ConnectU?</h3>
+
+          <p>ConnectU is an all-in-one, secure ecosystem designed exclusively for verified university students. It consolidates every major aspect of student collaboration-trading, ride-sharing, recovering lost items, and tutoring-into a single, unified platform.</p>
+
+          <p>Because every user is tied to their verified student ID and academic department, ConnectU
+           creates a high-trust environment. You always know you are interacting with a real peer.</p>
+
+          <h3>How the "Smart Matching" Works (The Magic Behind the Scenes)</h3>
+
+          <p>ConnectU doesn't just act as a static bulletin board; it actively works in the background to connect students using algorithmic matching across three major subsystems. Here is how it works:</p>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">1. The Lost &amp; Found Auto-Match</h4>
+
+          <p>Normally, if you lose an item, you have to manually scroll through days of "Found" posts hoping someone posted your item. ConnectU automates this.</p>
+
+          <ul style="color: #d1d5db; margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
+
+            <li><strong>The Process:</strong> When you report a lost item (e.g., a "Mechanical Keyboard" in "Building A"), you assign it specific categorical Tags.</li>
+
+            <li><strong>The Algorithm:</strong> Whenever a student uploads a "Found" post, the system instantly runs a background algorithm to compare the new tags against all active "Lost" posts.</li>
+
+            <li><strong>The Result:</strong> If the system calculates a high tag-overlap score, it generates a Suggested Match notification for both users. If both agree it's the same item, the system drops them into a secure, private chat to arrange the handover.</li>
+
+          </ul>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">2. The Two-Way Skill Exchange</h4>
+
+          <p>Students have incredible skills, but finding a study partner is difficult. The Skill Exchange uses a "needs vs. offers" matrix.</p>
+
+          <ul style="color: #d1d5db; margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
+
+            <li><strong>The Process:</strong> You create a post stating what you offer (e.g., "I am an expert in Python") and what you need (e.g., "I need a beginner tutor for Calculus").</li>
+
+            <li><strong>The Algorithm:</strong> The system cross-references the entire database to find "mirror" profiles-students who need Python and are offering Calculus.</li>
+
+            <li><strong>The Result:</strong> When a match is found, users can lock into an Exchange Session. Once completed, both users leave a review, which calculates into a permanent "Tutor Rating" on their profile to build community trust.</li>
+
+          </ul>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">3. Capacity-Managed Ride Sharing</h4>
+
+          <p>Coordinating carpools is notoriously difficult when trying to figure out who is driving, who needs a ride, and how many seats are left.</p>
+
+          <ul style="color: #d1d5db; margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
+
+            <li><strong>The Process:</strong> Drivers create a RidePost with a starting location, destination, and departure time. Riders create a RideMonitorRequest saying "I need to get to campus by 9 AM."</li>
+
+            <li><strong>The Algorithm:</strong> The system maps riders to drivers heading the same way at the same time. More importantly, it actively tracks the vehicle's capacity.</li>
+
+            <li><strong>The Result:</strong> If a microbus has 8 seats, the system tracks the current_occupancy dynamically. The exact second the 8th person joins, the system automatically locks the ride group, preventing awkward overbooking scenarios.</li>
+
+          </ul>
+
+          <h3>Everything Else You Need to Know</h3>
+
+          <p>Beyond matching, ConnectU provides the infrastructure to make these interactions safe and seamless.</p>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">&#128994; The Marketplace</h4>
+
+          <p>A peer-to-peer trading hub to buy and sell textbooks, dorm supplies, or electronics. Unlike Facebook Marketplace, buyers can click "Make Offer" to trigger a formal PurchaseRequest. This tracks inventory directly, ensuring an item isn't accidentally sold to two different people.</p>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">&#128994; The Universal Messaging Engine</h4>
+
+          <p>This is the heart of the platform's privacy. You never need to share your phone number or social media. Whether you are bargaining for a textbook, discussing a ride pickup, or returning a lost wallet, ConnectU automatically generates a secure, context-specific Thread. All messages, image attachments, and upvotes happen safely within the platform.</p>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">&#128994; Discussion Forums</h4>
+
+          <p>A public space for students to ask general questions, seek academic advice, or post club announcements. It features a Reddit-style upvote/downvote system, bringing the most helpful campus information to the top of the feed.</p>
+
+          <h4 style="color: var(--muted-cyan); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px;">&#128994; Reputation &amp; Profiles</h4>
+
+          <p>Every user has a public profile showcasing their Academic Department, Trimester, and aggregated ratings from the Skill Exchange. Good behavior and helpfulness are visibly rewarded, naturally discouraging bad actors.</p>
+
+        </div>
+
+        <div class="modal-gallery">
+
+          <div class="gallery-container">
+
+            <img id="gallery-image" src="projects/ConnecU/1. Introductions.png" alt="Gallery Image">
+
+            <button class="gallery-nav prev" onclick="changeGalleryImage(-1)" >&#10094;</button>
+
+            <button class="gallery-nav next" onclick="changeGalleryImage(1)" >&#10095;</button>
+
+          </div>
+
+          <div class="gallery-indicators" id="gallery-indicators"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
