@@ -27,12 +27,12 @@
   </div>
 
   <header class="app-header">
-    <h1 class="app-title">Portfolio<span>.</span></h1>
+    <h1 class="app-title"><span class="app-name">Quazi Nafee Nusair</span><br><span class="app-role">CS Undergrad<span class="app-dot">.</span></span></h1>
     <nav class="desktop-nav" style="display: flex; gap: 30px; font-weight: 500;">
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#portfolio" class="nav-link">Projects</a>
-      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#achievement" class="nav-link">Achievement</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
     <button class="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -45,7 +45,7 @@
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#portfolio" class="nav-link">Projects</a>
-      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#achievement" class="nav-link">Achievement</a>
       <a href="#contact" class="nav-link">Contact</a>
     </div>
   </header>
@@ -63,9 +63,9 @@
             Aspiring AI Engineer and CSE student focused on bridging theoretical algorithms with practical applications in generative AI. I am eager to contribute to innovative projects that push the boundaries of automation and software efficiency.
           </p>
           <div class="main-links">
-            <a href="cv/CV.pdf" class="cv-link" download>
+            <span class="cv-link cv-link-disabled" aria-disabled="true">
               Download CV
-            </a>
+            </span>
             <a href="https://github.com/nafeenusair" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.525.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.338 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.137 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg></a>
             <a href="https://www.linkedin.com/in/nafeenusair/" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.268h-3v-4.5c0-1.104-.896-2-2-2s-2 .896-2 2v4.5h-3v-9h3v1.25c.414-.586 1.104-1.25 2-1.25 1.657 0 3 1.343 3 3v6.75z"/></svg></a>
             <a href="https://www.facebook.com/nusair.nafee" class="icon-link" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.326v21.348c0 .733.592 1.326 1.325 1.326h11.495v-9.294h-3.124v-3.622h3.124v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.733 0 1.325-.593 1.325-1.326v-21.349c0-.733-.592-1.326-1.325-1.326z"/></svg></a>
@@ -85,7 +85,6 @@
           <button class="about-tab-btn active" data-tab="about-me">About Me</button>
           <button class="about-tab-btn" data-tab="skills">Skills</button>
           <button class="about-tab-btn" data-tab="education">Education</button>
-          <button class="about-tab-btn" data-tab="achievement">Achievement</button>
           <button class="about-tab-btn" data-tab="others">Others</button>
         </div>
         
@@ -176,11 +175,6 @@
           </div>
           
           
-          
-          <div class="about-tab-panel" id="achievement">
-            <h2>Achievement</h2>
-            <p>To be Announced</p>
-          </div>
           
           <div class="about-tab-panel" id="education">
             <h2>Education</h2>
@@ -295,13 +289,13 @@
 
   <section id="portfolio">
 
-    <div class="container" style="padding: 40px;">
+    <div class="container projects-container">
 
       <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); margin: 0 0 24px 0; border-bottom: 1px solid rgba(0, 240, 223, 0.1); padding-bottom: 16px;">Projects</h2>
 
       <div class="project-grid">
 
-        <div class="project-card" onclick="openProjectModal('connectu')" >
+        <div class="project-card">
 
           <div class="project-image">
 
@@ -315,7 +309,7 @@
 
             <p class="project-desc">The unified student community platform</p>
 
-            <a href="https://github.com/nafeenusair/CAMPUS.git" target="_blank" class="project-github" onclick="event.stopPropagation()" >
+            <a href="https://github.com/nafeenusair/ConnectU.git" target="_blank" class="project-github">
 
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.525.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.338 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.137 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
 
@@ -331,9 +325,20 @@
 
   </section>
 
-  <section id="experience">
-    <div class="container" style="padding: 40px;">
-      <h2 class="stub-title">To be announced</h2>
+  <section id="achievement">
+    <div class="container achievement-container">
+      <h2 class="stub-title">Achievement</h2>
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <img src="image/achivement/cert1.jpg" alt="Project Show 2026 certificate" onerror="this.style.display='none'; this.parentElement.classList.add('empty');">
+          <span>Certificate image coming soon</span>
+        </div>
+        <div class="achievement-details">
+          <h3>Project Show 2026</h3>
+          <p>Database Management System Laboratory</p>
+          <p>Placement: 5th</p>
+        </div>
+      </div>
     </div>
   </section>
 

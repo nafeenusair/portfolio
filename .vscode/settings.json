@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^if \\(Test-Path 'D:\\\\Code\\\\Portfolio\\\\image\\\\achivement'\\) \\{ Get-ChildItem 'D:\\\\Code\\\\Portfolio\\\\image\\\\achivement' -Name \\} else \\{ Write-Output 'achievement image directory not found' \\}; git --no-pager diff --check$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}

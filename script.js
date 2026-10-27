@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	/* ----------------------------------------------------
-		 2. NAVIGATION VIEW SWITCHER
+		 2. PAGE NAVIGATION
 		 ---------------------------------------------------- */
 	const navLinks = document.querySelectorAll('.nav-link');
 	const sections = document.querySelectorAll('section');
@@ -77,15 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		link.addEventListener('click', (e) => {
 			const href = link.getAttribute('href');
 
-			if (href.startsWith('#') && href.length > 1) {
-				e.preventDefault();
+			if (href && href.startsWith('#') && href.length > 1) {
 				const targetId = href.substring(1);
 				const targetSection = document.getElementById(targetId);
 
 				if (targetSection) {
-					sections.forEach(sec => sec.classList.remove('active-section'));
-					targetSection.classList.add('active-section');
-					// Update active nav highlighting
 					navLinks.forEach(n => n.classList.remove('active'));
 					link.classList.add('active');
 				}
@@ -97,7 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	const homeLink = document.querySelector('.nav-link[href="#home"]');
 	if (homeLink) homeLink.classList.add('active');
 
-	// Removed wheel-driven pagination per request; navigation works via clicks only.
+	const updateScrolledHeader = () => {
+		document.body.classList.toggle('page-scrolled', window.scrollY > 24);
+	};
+	updateScrolledHeader();
+	window.addEventListener('scroll', updateScrolledHeader, { passive: true });
+
+	const sectionObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (!entry.isIntersecting) return;
+			navLinks.forEach(link => {
+				link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+			});
+		});
+	}, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+	sections.forEach(section => sectionObserver.observe(section));
 
 	/* Mobile menu open/close */
 	function closeMenu() {

@@ -258,6 +258,10 @@ body.loaded .loader {
   cursor: pointer; transition: all 0.3s ease;
 }
 .cv-link:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 240, 223, 0.6); }
+.cv-link-disabled {
+  cursor: default;
+  pointer-events: none;
+}
 
 .main-links { display: flex; align-items: center; gap: 16px; }
 
@@ -843,7 +847,7 @@ body.loaded .loader {
    PROJECTS SECTION & MODAL
    ========================================= */
 .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; }
-.project-card { background: var(--panel); border: 1px solid rgba(0, 240, 223, 0.1); border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+.project-card { background: var(--panel); border: 1px solid rgba(0, 240, 223, 0.1); border-radius: 16px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
 .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 240, 223, 0.15); }
 .project-image { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid rgba(0, 240, 223, 0.1); }
 .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -853,7 +857,7 @@ body.loaded .loader {
 .project-desc { margin: 0; color: #a0aec0; font-size: 1rem; line-height: 1.5; padding-right: 40px; }
 .project-github { position: absolute; top: 20px; right: 20px; color: #a0aec0; transition: color 0.3s ease; }
 .project-github:hover { color: var(--cyan); }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay { display: none; }
 .modal-overlay.active { opacity: 1; visibility: visible; }
 .modal-content { background: var(--panel); border: 1px solid rgba(0, 240, 223, 0.2); border-radius: 20px; width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: translateY(20px); transition: transform 0.3s ease; }
 .modal-overlay.active .modal-content { transform: translateY(0); }
@@ -874,3 +878,185 @@ body.loaded .loader {
 .gallery-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: background 0.3s, transform 0.3s; }
 .gallery-dot.active { background: var(--cyan); transform: scale(1.2); }
 @media (max-width: 768px) { .modal-content { padding: 20px; padding-top: 50px; } .gallery-container { height: 300px; } }
+
+/* Scrollable section layout */
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+section,
+section.active-section {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding-top: 90px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: auto;
+  overflow: visible;
+  transform: none;
+  transition: none;
+  scroll-margin-top: 90px;
+}
+
+section:not(:last-of-type)::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(1120px, calc(100% - 80px));
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.65;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+#about {
+  display: block;
+  min-height: auto;
+}
+
+.app-title {
+  font-size: 18px;
+  text-shadow: none;
+}
+
+.app-title .app-name { color: #fff; }
+.app-role,
+.app-dot { color: var(--cyan); }
+
+.nav-link {
+  text-shadow: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cyan);
+}
+
+.page-scrolled .app-header {
+  width: calc(100% - 36px);
+  left: 18px;
+  right: auto;
+  min-height: 72px;
+  padding: 0 40px;
+  background: var(--bg);
+  border: 1px solid rgba(0, 240, 223, 0.35);
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.page-scrolled .app-title,
+.page-scrolled .desktop-nav .nav-link {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-scrolled .app-title .app-name {
+  text-shadow: none;
+}
+
+.page-scrolled .app-title .app-role {
+  text-shadow: none;
+}
+
+.page-scrolled .desktop-nav .nav-link {
+  text-shadow: none;
+}
+
+.achievement-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.projects-container {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.achievement-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) 1.2fr;
+  gap: 48px;
+  align-items: center;
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid rgba(0, 240, 223, 0.12);
+  border-radius: 16px;
+}
+
+.achievement-image {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(0, 240, 223, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.achievement-image img {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  object-fit: contain;
+}
+
+.achievement-image span {
+  display: none;
+  color: var(--muted-cyan);
+  text-align: center;
+}
+
+.achievement-image.empty span {
+  display: block;
+}
+
+.achievement-details h3 {
+  margin: 0 0 16px;
+  color: var(--cyan);
+  font-size: 1.8rem;
+}
+
+.achievement-details p {
+  margin: 8px 0;
+  color: #d1d5db;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .page-scrolled .app-header {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .achievement-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .achievement-container {
+    padding: 24px;
+  }
+}
